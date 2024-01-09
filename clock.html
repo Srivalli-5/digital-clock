@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Clock</title>
+<style>
+  body {
+    background-image: url('https://media.istockphoto.com/id/1343087913/photo/abstract-clock-deal-over-white-wall-realistic-3d.jpg?b=1&s=612x612&w=0&k=20&c=E_OAWh-Kauk3E3W8BVzeX0SowLfxTNLP7V4iuwXtBm0=');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+    margin: 10;
+    padding: 10;
+    display: flex;
+    flex-direction:column;
+    min-height: 100vh;
+  }
+   
+
+  ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+    background-color: #333;
+   
+  }
+  li{
+    float: left;
+  }
+  li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  li a:hover{
+    background-color: #111;
+  }
+
+    
+  #content {
+    flex:none;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+
+
+
+
+.clock-container {
+    text-align: center;
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.clock {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 10px;
+    position: fixed;
+    bottom: 35px;
+    right: 10px;
+    font-size: 50px;
+    color:cadetblue
+}
+
+.ampm {
+    font-size: 1.5rem;
+    color: #777;
+}
+  
+
+
+  
+
+</style>
+</head>
+<body>
+    
+
+<ul>
+ <li> <a  href="home.html">Home</a><br</li>
+
+  <li><a href="Aboutus.html">About</a></li>
+  <li><a href="Information.html">Information</a></li>
+  <li><a href="Contact.html">Contact</a></li>
+</ul>
+
+<div id="content"><b> 
+    Welcome to Digital clock
+</b>
+    
+  
+</div>
+
+<div class ="clock">
+    <div class="time" id="time"></div>
+    <div class="date" id="date"></div>
+</div>
+
+
+<script>
+  
+  function updateClock() {
+    const now = new Date();
+    
+    const timeElement = document.getElementById('time');
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(seconds).padStart(2, '0');
+    
+    const timeString = `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${ampm}`;
+    timeElement.textContent = timeString;
+
+    const dateElement = document.getElementById('date');
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const dateString = now.toLocaleDateString(undefined, options);
+    dateElement.textContent = dateString;
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
+  
+
+</script>
+
+</body>
+</html>
+
